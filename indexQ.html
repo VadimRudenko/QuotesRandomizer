@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="normalize.css">
+  <style>     
+    .out-conteiner { position: relative; top: 250px ;   } 
+    .in-conteiner  { background-color: white; 
+                     border: 1px solid transparent; 
+                     border-radius: 20px 
+                   }
+    .center  { width: 30%;
+               margin: auto;
+             }
+    p {font-family: 'Times New Roman', Times, serif; text-align:center; padding: 10px   }
+    p.quote  {font-size: 20px    }
+    p.author {font-size: 16px    }
+    button { border-radius: 5px; padding: 10px 20px }
+
+  </style>        
+</head>
+<body class='newColor'>
+  <div class='center out-conteiner'>  
+    <div class='in-conteiner'>  
+
+      <p class="intro"> Здесь находятся цитаты, которые я надергал от балды в интернете,
+              чтобы вставить в массив для моей суперпрограмы "Quotes Randomizer"         <p>         
+      <p class="quote "> Some quotes    <p>         
+      <p class="author "> Some author   <p>         
+      <button class="newColor"  onclick='javascript:getQuotte_N_Color()'> New Quote</button> 
+    </div>     
+    <p class='center'> byVadimRudenko</p>
+  </div>     
+  
+<script>
+  var quottesArr = [  // array with subarrays of authors and quotes  id="quote"
+    ['Фрэнсис Бэкон', 'Люди должны знать: в театре жизни только Богу и ангелам позволительно быть зрителями.'    ],
+    ['Фрэнсис Бэкон', 'Вся наша нравственная философия-не более чем прислужница религии.'  ],
+    ['Фрэнсис Бэкон', 'В гневе глупцы остры на язык, но богаче от этого не становится.'  ],
+    ['Фрэнсис Бэкон', 'Законы подобны паутине: мелкие насекомые в ней запутываются, большие-никогда.'   ],
+    ['Фрэнсис Бэкон', 'Чем менее история правдива, тем больше она достовляет удовольствия.'   ],
+    ['Фрэнсис Бэкон', 'Поверхность в философии склоняет человеческий ум к атеизму, глубина-к религии.'  ],
+    ['Фрэнсис Бэкон', 'Французы умнее,чем кажется,а испанцы кажутся умнее.'   ],
+    ['Оскар Уальд', 'Самая прочная основа для брака- взаимное не понимание.'    ],
+    ['Оскар Уальд', 'Искусство, в сущности, отражает вовсе не жизнь, а зрителя.'  ],
+    ['Оскар Уальд', 'Когда боги хотят наказать нас, они внимают нашем молитвам.' ],
+    ['Оскар Уальд', 'Умеренность губительна. Успех сопутствует только излишеству.'  ],
+    ['Оскар Уальд', 'Единственный наш долг перед историей-это постоянно её переписывать.'   ],
+    ['Роберт Льюис Стивенсон', 'Разлука молодит любовь, не дает ей состариться и захиреть.'   ],
+    ['Роберт Льюис Стивенсон', 'Желание и любопытство- два глаза, магически преображающие мир.'   ],
+    ['Роберт Льюис Стивенсон', 'Самые чужие-это те чужеземцы, что живут среди нас.'   ],
+    ['Роберт Льюис Стивенсон', 'Памятники ставятся всему тому, что наименее памятно.'   ]
+  ];
+  window.onload = getQuotte_N_Color();
+
+  function randomColor(){   // getting color number for RGB
+    return Math.floor(Math.random()*255); 
+  }
+  function randomQuotes(){  // getting sub-array 
+    return Math.floor(Math.random()*quottesArr.length); 
+  }
+
+  function getQuotte_N_Color(){
+    var subArr = quottesArr[ randomQuotes() ]; // here is author & quote
+
+    var elemQuote = document.querySelector('.quote');
+    var elemAuthor = document.querySelector('.author');
+    elemQuote.innerHTML = subArr[1];
+    elemAuthor.innerHTML = subArr[0];
+  // calcilating color
+    var colorString = 'rgb(' + [ randomColor(),randomColor(),randomColor() ].join() + ')';  
+  // getting collection of elements for changing color
+    var waitForColor = document.querySelectorAll('.newColor');
+      for (var i = 0; i < waitForColor.length; i++) {
+	      waitForColor[i].style.backgroundColor =  colorString;
+      }
+
+   
+  }
+
+
+</script>
+
+
+</body>
+</html>
